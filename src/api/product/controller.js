@@ -18,10 +18,10 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
     .then(success(res))
     .catch(next)
 }
-export const show = ({ params }, res, next) =>
+export const show = (fullView) => ({ params }, res, next) =>
   Product.findById(params.id)
     .then(notFound(res))
-    .then((product) => product ? product.view() : null)
+    .then((product) => product ? product.view(fullView) : null)
     .then(success(res))
     .catch(next)
 

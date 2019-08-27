@@ -57,7 +57,7 @@ router.get('/',
  * @apiError 404 Product not found.
  */
 router.get('/:id',
-  show)
+  show(true))
 
 /**
  * @api {put} /products/:id Update product
@@ -65,7 +65,6 @@ router.get('/:id',
  * @apiGroup Product
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam creationDate Product's creationDate.
  * @apiParam title Product's title.
  * @apiParam cover Product's cover.
  * @apiParam imgs Product's imgs.
@@ -73,7 +72,6 @@ router.get('/:id',
  * @apiParam description Product's description.
  * @apiParam sku Product's sku.
  * @apiParam price Product's price.
- * @apiParam oldprice Product's oldprice.
  * @apiParam rating Product's rating.
  * @apiSuccess {Object} product Product's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
