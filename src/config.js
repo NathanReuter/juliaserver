@@ -26,10 +26,11 @@ const config = {
     port: process.env.PORT || 9000,
     ip: process.env.IP || '0.0.0.0',
     apiRoot: process.env.API_ROOT || '',
-    defaultEmail: 'no-reply@julia-server.com',
+    defaultEmail: 'juliabnutri@gmail.com ',
     sendgridKey: requireProcessEnv('SENDGRID_KEY'),
     masterKey: requireProcessEnv('MASTER_KEY'),
     jwtSecret: requireProcessEnv('JWT_SECRET'),
+    contactEmail: 'nathan0reuter@gmail.com',
     mongo: {
       options: {
         db: {
@@ -51,7 +52,7 @@ const config = {
   },
   production: {
     ip: process.env.IP || undefined,
-    port: process.env.PORT || 8080,
+    port: process.env.PORT || 8050,
     mongo: {
       uri: process.env.MONGODB_URI || 'mongodb://localhost/julia-server'
     }
