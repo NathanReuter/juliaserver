@@ -43,6 +43,10 @@ const productSchema = new Schema({
   },
   creator: {
     type: String
+  },
+  link: {
+    type: String,
+    unique: true
   }
 }, {
   timestamps: true,
@@ -64,7 +68,8 @@ productSchema.methods = {
       sku: this.sku,
       price: this.price,
       oldprice: this.oldprice,
-      rating: this.rating
+      rating: this.rating,
+      link: this.link
     }
 
     return full ? {
