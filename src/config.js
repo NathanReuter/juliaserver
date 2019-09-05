@@ -30,7 +30,7 @@ const config = {
     sendgridKey: requireProcessEnv('SENDGRID_KEY'),
     masterKey: requireProcessEnv('MASTER_KEY'),
     jwtSecret: requireProcessEnv('JWT_SECRET'),
-    contactEmail: 'nathan0reuter@gmail.com',
+    contactEmail: 'juliabnutri@gmail.com',
     mongo: {
       options: {
         db: {
