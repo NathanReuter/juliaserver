@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node .",
     "test": "jest",
-    "forever" : "forever start .",
+    "forever": "forever start .",
     "coverage": "npm test -- --coverage",
     "postcoverage": "opn coverage/lcov-report/index.html",
     "dev": "nodemon -i \"*.test.js\" .",

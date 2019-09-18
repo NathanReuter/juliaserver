@@ -24,7 +24,7 @@ const config = {
     env: process.env.NODE_ENV || 'development',
     root: path.join(__dirname, '..'),
     port: process.env.PORT || 9000,
-    ip: process.env.IP || '0.0.0.0',
+    ip: process.env.IP || '127.0.0.1',
     apiRoot: process.env.API_ROOT || '',
     defaultEmail: 'juliabnutri@gmail.com ',
     sendgridKey: requireProcessEnv('SENDGRID_KEY'),
@@ -48,7 +48,8 @@ const config = {
       options: {
         debug: true
       }
-    }
+    },
+    contactEmail: 'nathan0reuter@gmail.com'
   },
   production: {
     ip: process.env.IP || undefined,

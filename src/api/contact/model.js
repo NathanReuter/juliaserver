@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-const contact = new Schema({
+const userContact = new Schema({
   email: {
     type: String,
     match: /^\S+@\S+\.\S+$/,
@@ -8,20 +8,24 @@ const contact = new Schema({
     trim: true,
     lowercase: true
   },
-  name: { type: String },
-  subject: { type: String },
-  content: { type: String, required: true }
+  contactEmails: [{
+    name: { type: String },
+    subject: { type: String },
+    content: { type: String }
+  }],
+  leadsAction: [String],
+  blacklist: {type: Boolean}
 }, {
   timestamps: true
 })
 
-contact.methods = {
+userContact.methods = {
   view () {
     const view = {
       email: this.email,
-      name: this.name,
-      subject: this.subject,
-      content: this.content
+      contactEmails: this.contactEmails,
+      leadsAction: this.leadsAction,
+      blacklist: this.blacklist
     }
 
     return {
@@ -30,7 +34,7 @@ contact.methods = {
   }
 }
 
-const model = mongoose.model('Contact', contact)
+const model = mongoose.model('UserContact', userContact)
 
 export const schema = model.schema
 export default model

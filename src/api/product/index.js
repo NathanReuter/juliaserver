@@ -4,11 +4,13 @@ import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
+import { schema as UserContactSchema } from '../contact/model'
+import {simpleLeadContact} from '../../middleware/leadsContact'
 export Product, { schema } from './model'
 
 const router = new Router()
 const { title, cover, imgs, type, description, sku, price, oldprice, rating, creator, link} = schema.tree
-
+const {email} = UserContactSchema.tree
 /**
  * @api {post} /products Create product
  * @apiName CreateProduct
@@ -113,5 +115,22 @@ router.put('/:id',
 router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
   destroy)
+
+/**
+ * @api {post} /products/downloademail/:id Sends product download Link by email
+ * @apiName Product Download Email
+ * @apiGroup Product
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
+ * @apiSuccess (Success 200)
+ * @apiError 404 Product not found.
+ * @apiError 401 admin access only.
+ */
+router.post('/downloademail/:id',
+  body({email}),
+  simpleLeadContact('Download Email'),
+  (req, res) => {
+    res.send(200)
+  })
 
 export default router
