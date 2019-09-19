@@ -58,7 +58,7 @@ export const destroy = ({ params }, res, next) =>
     .then(success(res, 204))
     .catch(next)
 
-export const createDowloadEmail = ({ bodymen: { body }, params, product }, res, next) => {
+export const createDowloadEmail = ({ bodymen: { body: { email } }, params, product }, res, next) => {
   const contentMessage = (name, link) => `
         <b>Email de Contato</b> <br> 
         Obrigada por adquirir o <b>${name}</b>!!<br>
@@ -74,7 +74,7 @@ export const createDowloadEmail = ({ bodymen: { body }, params, product }, res, 
   }
 
   sendMail({
-    toEmail: contactEmail,
+    toEmail: email,
     subject: `Acesso ao Produto - Link para download do "${product.title}"`,
     content: contentMessage(product.title, product.link)
   })

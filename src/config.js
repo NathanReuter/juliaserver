@@ -49,7 +49,7 @@ const config = {
         debug: true
       }
     },
-    contactEmail: 'nathan0reuter@gmail.com'
+    // contactEmail: 'nathan0reuter@gmail.com'
   },
   production: {
     ip: process.env.IP || undefined,
