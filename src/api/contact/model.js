@@ -13,7 +13,7 @@ const userContact = new Schema({
     subject: { type: String },
     content: { type: String }
   }],
-  leadsAction: [String],
+  leadsAction: [{action: String, target: String}],
   blacklist: {type: Boolean}
 }, {
   timestamps: true

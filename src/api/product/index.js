@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, createDowloadEmail, params } from './controller'
 import { schema } from './model'
 import { schema as UserContactSchema } from '../contact/model'
 import {simpleLeadContact} from '../../middleware/leadsContact'
@@ -11,6 +11,12 @@ export Product, { schema } from './model'
 const router = new Router()
 const { title, cover, imgs, type, description, sku, price, oldprice, rating, creator, link} = schema.tree
 const {email} = UserContactSchema.tree
+
+/**
+ Router params middleware that searchs for the product when has an id in params
+ */
+router.param('id', params)
+
 /**
  * @api {post} /products Create product
  * @apiName CreateProduct
@@ -128,9 +134,7 @@ router.delete('/:id',
  */
 router.post('/downloademail/:id',
   body({email}),
-  simpleLeadContact('Download Email'),
-  (req, res) => {
-    res.send(200)
-  })
+  simpleLeadContact('Download Email', 'product'),
+  createDowloadEmail)
 
 export default router

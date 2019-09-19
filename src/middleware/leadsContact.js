@@ -17,29 +17,25 @@ const emailLeadContact = (req, res, next) => {
         model.save()
       }
     })
-    // console.log(email, name, subject, content)
   }
 
   next()
 }
 
-const simpleLeadContact = (lead) => (req, res, next) => {
+const simpleLeadContact = (action, target) => (req, res, next) => {
   const bodymen = req.bodymen
+  const targetModel = req[target]
 
   if (bodymen && bodymen.body) {
     const {email} = bodymen.body
     UserContact.findOneAndUpdate(email).then((model) => {
       if (!model) {
         UserContact.create({email})
-          .then(res => {
-            console.log(res)
-          })
       } else {
-        model.leadsAction.push(lead)
+        model.leadsAction.push({action, target: targetModel._id})
         model.save()
       }
     })
-    // console.log(email, name, subject, content)
   }
 
   next()
