@@ -4,7 +4,7 @@ import { middleware as body } from 'bodymen'
 import { schema } from './model'
 import {emailLeadContact} from '../../middleware/leadsContact'
 import {token} from '../../services/passport';
-import {middleware as query} from "querymen";
+import {middleware as query} from 'querymen';
 
 const { email, name, subject, content } = schema.tree
 const router = new Router()
@@ -17,11 +17,10 @@ const router = new Router()
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Contact not found.
  */
-router.post('/contact',
+router.post('/',
   body({email, name, subject, content}),
   emailLeadContact,
   create)
-
 
 /**
  * @api {post} /contacts/contact Create contact email

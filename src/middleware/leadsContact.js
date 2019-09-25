@@ -25,14 +25,15 @@ const emailLeadContact = (req, res, next) => {
 const simpleLeadContact = (action, target) => (req, res, next) => {
   const bodymen = req.bodymen
   const targetModel = req[target]
+  const leadAction = {action, target: targetModel._id}
 
   if (bodymen && bodymen.body) {
     const {email} = bodymen.body
-    UserContact.findOneAndUpdate(email).then((model) => {
+    UserContact.findOne({email}).then((model) => {
       if (!model) {
-        UserContact.create({email})
+        UserContact.create({email, leadsAction: [leadAction]})
       } else {
-        model.leadsAction.push({action, target: targetModel._id})
+        model.leadsAction.push(leadAction)
         model.save()
       }
     })
